@@ -1,0 +1,20 @@
+{
+  "name": "caps",
+  "version": "1.0.0",
+  "description": "Event-driven package delivery simulation using Node.js, EventEmitter, and Jest. Phase 1",
+  "main": "index.js",
+   "scripts": {
+    "test": "jest"
+  }, 
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/AGiv-lab/caps/issues"
+  },
+  "homepage": "https://github.com/AGiv-lab/caps#readme",
+  "devDependencies": {
+    "jest": "^30.5.2"
+  }
+}
