@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "Event-driven package delivery simulation using Node.js, EventEmitter, and Jest. Phase 1",
   "main": "index.js",
-   "scripts": {
+  "scripts": {
     "test": "jest"
-  }, 
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -16,5 +16,9 @@
   "homepage": "https://github.com/AGiv-lab/caps#readme",
   "devDependencies": {
     "jest": "^30.5.2"
+  },
+  "dependencies": {
+    "socket.io": "^4.8.4",
+    "socket.io-client": "^4.8.4"
   }
 }
