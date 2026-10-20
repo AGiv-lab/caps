@@ -4,19 +4,27 @@ const events = require('./caps');
 require('./driver');
 const { createOrder } = require('./vendor');
 
-// Log events at the CAPS hub
+ 
+// Log every event with its timestamp and complete payload
+function logEvent(event, payload) {
+  console.log('EVENT:', {
+    event,
+    time: new Date().toISOString(),
+    payload,
+  });
+}
+
 events.on('pickup', (order) => {
-  console.log(`CAPS: pickup requested for ${order.orderId}`);
+  logEvent('pickup', order);
 });
 
 events.on('in-transit', (order) => {
-  console.log(`CAPS: package ${order.orderId} is in transit`);
+  logEvent('in-transit', order);
 });
 
 events.on('delivered', (order) => {
-  console.log(`CAPS: package ${order.orderId} delivered`);
+  logEvent('delivered', order);
 });
 
-// Generate an order every 5 seconds
 createOrder();
 setInterval(createOrder, 5000); 

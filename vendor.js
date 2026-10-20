@@ -3,9 +3,9 @@ const { randomUUID } = require('crypto');
 
 const store = '1-206-flowers';
 
-function createOrder() {
+function createOrder(storeName = store) { 
   const order = {
-    store,
+  store: storeName,  
     orderId: randomUUID(),
     customer: 'Jane Doe',
     address: 'Seattle, WA',

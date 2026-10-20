@@ -65,7 +65,7 @@ The Jest tests verify that:
 - Pickup events are emitted.
 - Driver in-transit and delivered events are emitted.
 
-**Current results:** 2 tests passing.
+**Current results:** 4 tests passing.
 
 ## AI Assistance Disclosure
 

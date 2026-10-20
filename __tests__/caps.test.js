@@ -41,4 +41,47 @@ describe('CAPS Event System', () => {
 
     expect(emitSpy).toHaveBeenCalledWith('delivered', order);
   });
+
+  test('vendor thanks the customer when an order is delivered', () => {
+    const logSpy = jest.spyOn(console, 'log').mockImplementation(() => {});
+
+    const order = {
+      store: '1-206-flowers',
+      orderId: 'test-456',
+      customer: 'Jane Doe',
+      address: 'Seattle, WA',
+    };
+
+    events.emit('delivered', order);
+
+    expect(logSpy).toHaveBeenCalledWith(
+      'Thank you for your order, Jane Doe'
+    );
+  });
+
+  
+  test('driver logs pickup and delivery confirmations', () => {
+    jest.useFakeTimers();
+    const logSpy = jest.spyOn(console, 'log').mockImplementation(() => {});
+
+    const order = {
+      store: '1-206-flowers',
+      orderId: 'test-789',
+      customer: 'Jane Doe',
+      address: 'Seattle, WA',
+    };
+
+    handlePickup(order);
+
+    expect(logSpy).toHaveBeenCalledWith(
+      'DRIVER: picked up test-789'
+    );
+
+    jest.advanceTimersByTime(2000);
+
+    expect(logSpy).toHaveBeenCalledWith(
+      'DRIVER: delivered test-789'
+    );
+  });
+
 });
