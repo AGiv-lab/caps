@@ -1,11 +1,10 @@
-
 name: Node.js Tests
 
 on:
   push:
-    branches: [events]
+    branches: [events, socket.io]
   pull_request:
-    branches: [main]
+    branches: [main, events]
 
 jobs:
   test:
