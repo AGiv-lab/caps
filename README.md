@@ -207,3 +207,9 @@ The project author subsequently reported that all nine tests passed and that man
 - "Approved. Implement the proposed nine Jest test cases."
 
 Changes were proposed for review and applied after approval.
+
+## Lab 13: Message Queues
+
+### Component Diagram
+
+![CAPS Lab 13 Message Queue UML](assets/caps-queue-uml.png)
