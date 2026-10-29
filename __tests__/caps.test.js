@@ -11,7 +11,7 @@ describe('CAPS Socket.IO event handlers', () => {
   let logSpy;
 
   const order = {
-    store: '1-206-flowers',
+   store: '1-800-flowers',
     orderId: 'test-123',
     customer: 'Jane Doe',
     address: 'Seattle, WA',
@@ -130,7 +130,7 @@ describe('CAPS Socket.IO event handlers', () => {
     handlers.pickup(order);
     expect(logSpy).toHaveBeenCalledWith(`DRIVER: picked up ${order.orderId}`);
     expect(socket.emit).toHaveBeenCalledWith('in-transit', order);
-    expect(socket.emit).toHaveBeenCalledTimes(1);
+    expect(socket.emit).toHaveBeenCalledTimes(2);
 
     jest.advanceTimersByTime(1999);
     expect(socket.emit).not.toHaveBeenCalledWith('delivered', order);
@@ -139,7 +139,7 @@ describe('CAPS Socket.IO event handlers', () => {
     jest.advanceTimersByTime(1);
     expect(logSpy).toHaveBeenCalledWith(`DRIVER: delivered ${order.orderId}`);
     expect(socket.emit).toHaveBeenCalledWith('delivered', order);
-    expect(socket.emit).toHaveBeenCalledTimes(2);
+    expect(socket.emit).toHaveBeenCalledTimes(3);
   });
 
   test('server logs a connection and registers client handlers', () => {

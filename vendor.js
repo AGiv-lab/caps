@@ -1,7 +1,7 @@
 const { io } = require('socket.io-client');
 const { randomUUID } = require('crypto');
 
-const store = '1-206-flowers';
+const store = process.env.STORE || '1-800-flowers';
 
 // Lab 12: connect to the CAPS server instead of a local EventEmitter.
 const socket = io('http://localhost:3000/caps');
@@ -12,6 +12,10 @@ let orderInterval;
 socket.on('connect', () => {
   // Join this store's room to receive its delivery updates.
   socket.emit('join', store);
+    socket.emit('getAll', {
+    event: 'delivered',
+    clientId: store,
+  });
 
   if (!orderInterval) {
     // Lab 11 scheduled orders in index.js.
@@ -39,6 +43,12 @@ function createOrder(storeName = store) {
 socket.on('delivered', (order) => {
   if (order.store === store) {
     console.log(`Thank you for your order, ${order.customer}`);
+
+    socket.emit('received', {
+      event: 'delivered',
+      clientId: store,
+      messageId: order.messageId || order.orderId,
+    });
   }
 });
 
