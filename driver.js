@@ -3,8 +3,21 @@ const { io } = require('socket.io-client');
 // Lab 12: connect to the CAPS server instead of a local EventEmitter.
 const socket = io('http://localhost:3000/caps');
 
+socket.on('connect', () => {
+  socket.emit('getAll', {
+    event: 'pickup',
+    clientId: 'drivers',
+  });
+});
+
 function handlePickup(order) {
   console.log(`DRIVER: picked up ${order.orderId}`);
+
+    socket.emit('received', {
+    event: 'pickup',
+    clientId: 'drivers',
+    messageId: order.messageId || order.orderId,
+  });
 
   // Tell the server immediately that the package is in transit.
   socket.emit('in-transit', order);
